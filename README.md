@@ -4,8 +4,8 @@
 
 1. Clone the repository
 ``` bash
-$ git clone https://github.com/tauh33dkhan/fileupload-code-review
-$ cd /fileupload-code-review
+$ git clone https://github.com/tauh33dkhan/fileupload-codereview
+$ cd /fileupload-codereview
 ```
 
 2. Create a mysql database
