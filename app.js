@@ -11,7 +11,6 @@ require("dotenv").config();
 
 app.use(fileUpload());
 app.use(cookieParser());
-app.use(express.static('./assets/uploads'))
 app.set('view engine', 'ejs');
 app.use(express.static('./assets'))
 app.use(express.urlencoded({ extended: true }));
@@ -59,21 +58,21 @@ app.get('/logout', (req, res) => {
 app.post('/login', (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
-    if (username !== '' & password !== '') {
-        Users.findOne({ where: { username: username, password: password } })
-            .then(user => {
-                if (user) {
-                    const jwt_token = generateAccessToken(username);
-                    res.cookie('authToken', jwt_token);
-                    res.status(200).send("/");
-                }
-                else {
-                    res.status(403).send("Invalid username/password.");
-                }
-            })
-    } else {
-        res.status(400).send();
+    if (username == '' & password == '') {
+        res.status(400).send()
+        return
     }
+    Users.findOne({ where: { username: username, password: password } })
+        .then(user => {
+            if (user) {
+                const jwt_token = generateAccessToken(username);
+                res.cookie('authToken', jwt_token);
+                res.status(200).send("/");
+            }
+            else {
+                res.status(403).send("Invalid username/password.");
+            }
+        })
 })
 
 app.get('/profile', authenticateToken, (req, res) => {
@@ -83,6 +82,8 @@ app.get('/profile', authenticateToken, (req, res) => {
         profilePic: profilePic
     })
 })
+
+// file upload handling
 
 app.post('/upload', authenticateToken, function (req, res) {
     if (!req.files || Object.keys(req.files).length === 0)
