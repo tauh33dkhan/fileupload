@@ -39,7 +39,7 @@ node app.js
 
 you can now access the application at http://localhost:3000
 
-6. Use following demo users credentials.
+6. Use following demo user credentials.
 
 ```
 superman :  superpower
