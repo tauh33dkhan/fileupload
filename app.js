@@ -8,8 +8,7 @@ const { Users } = require('./db.js');
 const jwt = require('jsonwebtoken')
 
 require("dotenv").config();
-
-app.use(fileUpload());
+app.use(fileUpload({safeFileNames: true, preserveExtension: true, preserveExtension: 4}))
 app.use(cookieParser());
 app.set('view engine', 'ejs');
 app.use(express.static('./assets'))
@@ -106,12 +105,12 @@ app.post('/upload', authenticateToken, function (req, res) {
     profilePic.mv(uploadPath, function (err) {
         if (err)
             return res.status(500).send("Interal server error");
-        Users.update({ profilePic: profilePicName }, { where: { username: req.user.username } })
+        Users.update({ profilePic: profilePicName   }, { where: { username: req.user.username } })
             .then((msg) => {
                 res.redirect('/profile');
             })
             .catch((err) => {
-                res.status(500).send(err)
+                res.status(500).send('Internal server')
             })
     })
 });
