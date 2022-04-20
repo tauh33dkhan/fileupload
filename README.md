@@ -25,7 +25,7 @@ DB_HOST=127.0.0.1
 JWT_SECRET=55d4e519144f79a73bd3afd74681bf3cd03fa3d385e53648aeae6be25a10719d4ce714d38fd527b54178afde756a4bd60b7e1b60f4b703b00bb856e11be7c87f
 ```
 
-4. Install dependencies application 
+4. Install application  dependencies 
 
 ```
 $ npm install
