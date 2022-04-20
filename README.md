@@ -8,7 +8,7 @@ $ git clone https://github.com/tauh33dkhan/fileupload-codereview
 $ cd /fileupload-codereview
 ```
 
-2. Create a mysql database
+2. Create mysql database
    
 ```js
 $ mysql -u root -p
